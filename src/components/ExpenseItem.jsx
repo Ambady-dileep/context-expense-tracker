@@ -1,8 +1,8 @@
-function ExpenseItem(){
+function ExpenseItem({title, amount}){
     return (
         <li>
-            <span>Groceries</span>
-            <span>₹500</span>
+            <span>{title}</span>
+            <span>₹{amount}</span>
             <button>Delete</button>
         </li>
     )

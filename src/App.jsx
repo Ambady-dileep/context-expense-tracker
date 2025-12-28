@@ -3,12 +3,16 @@ import ExpenseList from "./components/ExpenseList"
 import TotalAmount from "./components/TotalAmount"
 
 function App() {
+  const expenses = [
+    {id:1, title: "Groceries", amount: 500},
+    {id:2, title: "Rent", amount: 8000},
+  ]
   return (
     <div>
       <h1>Expense Tracker</h1>
       <ExpenseForm />
-      <TotalAmount />
-      <ExpenseList />
+      <ExpenseList expenses={expenses} />
+      <TotalAmount expenses={expenses} />
     </div>
   )
 }
