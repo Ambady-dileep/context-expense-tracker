@@ -21,15 +21,5 @@ A simple frontend-only expense tracker built with React to solidify core concept
 - `helpers/` – Pure business logic functions
 
 ## Setup
-```bash
 npm install
 npm run dev
-
-
----
-
-# 🏁 FINAL COMMIT (IMPORTANT)
-
-```bash
-git add .
-git commit -m "Finalize project: context-based expense tracker"
