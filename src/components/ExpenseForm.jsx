@@ -1,41 +1,41 @@
-import { useState } from 'react'
+import { useContext, useState } from "react"
+import { ExpenseContext } from "../context/ExpenseContext"
 
-function ExpenseForm({ onAddExpense }){
-    const [title,setTitle] = useState("")
+function ExpenseForm() {
+    const { addExpense } = useContext(ExpenseContext)
+    const [title, setTitle] = useState("")
     const [amount, setAmount] = useState("")
 
-    function handleSubmit(e) {
+    function handleSubmit(e){
         e.preventDefault()
+
+        if (!title || !amount) return 
+
+        addExpense({
+            id: Date.now(),
+            title,
+            amount:Number(amount),
+        })
+
+        setTitle("")
+        setAmount("")
     }
-
-    if (!title || !amount) return 
-
-    onAddExpense({
-        id: Date.now(),
-        title,
-        amount:Number(amount),
-    })
-
-    setTitle("")
-    setAmount("")
 
     return (
         <form onSubmit={handleSubmit}>
-            <input 
-            type="text"
-            placeholder="Expense title"
+            <input
             value={title}
-            onChange={(e)=>setTitle(e.target.value)} 
+            onChange={(e)=>setTitle(e.target.value)}
+            placeholder="Expense title"
             />
             <input 
-            type="number" 
+            value={amount}
+            onChange={(e) => setAmount(e.target.value)}
+            type="number"
             placeholder="Amount"
-            value={amount} 
-            onChange={(e)=> setAmount(e.target.value)}
             />
             <button>Add Expense</button>
         </form>
-
     )
 }
 
