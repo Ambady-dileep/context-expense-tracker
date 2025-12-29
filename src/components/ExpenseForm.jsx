@@ -1,42 +1,47 @@
-import { useContext, useState } from "react"
+import { useContext, useState, useRef } from "react"
 import { ExpenseContext } from "../context/ExpenseContext"
 
 function ExpenseForm() {
-    const { addExpense } = useContext(ExpenseContext)
-    const [title, setTitle] = useState("")
-    const [amount, setAmount] = useState("")
+  const { addExpense } = useContext(ExpenseContext)
 
-    function handleSubmit(e){
-        e.preventDefault()
+  const titleRef = useRef(null)
+  const [amount, setAmount] = useState("")
 
-        if (!title || !amount) return 
+  function handleSubmit(e) {
+    e.preventDefault()
 
-        addExpense({
-            id: Date.now(),
-            title,
-            amount:Number(amount),
-        })
+    const title = titleRef.current.value
 
-        setTitle("")
-        setAmount("")
-    }
+    if (!title || !amount) return
 
-    return (
-        <form onSubmit={handleSubmit}>
-            <input
-            value={title}
-            onChange={(e)=>setTitle(e.target.value)}
-            placeholder="Expense title"
-            />
-            <input 
-            value={amount}
-            onChange={(e) => setAmount(e.target.value)}
-            type="number"
-            placeholder="Amount"
-            />
-            <button>Add Expense</button>
-        </form>
-    )
+    addExpense({
+      id: Date.now(),
+      title,
+      amount: Number(amount),
+    })
+
+    titleRef.current.value = ""
+    setAmount("")
+
+    titleRef.current.focus()
+  }
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <input
+        ref={titleRef}
+        type="text"
+        placeholder="Expense title"
+      />
+      <input
+        type="number"
+        placeholder="Amount"
+        value={amount}
+        onChange={(e) => setAmount(e.target.value)}
+      />
+      <button disabled={!amount}>Add Expense</button>
+    </form>
+  )
 }
 
 export default ExpenseForm
