@@ -1,41 +1,35 @@
 # Context Expense Tracker
 
-A simple frontend-only expense tracker built with React to understand Context API, state management, and helper functions.
+A simple frontend-only expense tracker built with React to solidify core concepts such as component design, state management, Context API, helper functions, and side effects.
 
 ## Features
-- Add expenses
-- Delete expenses
-- View total spending
+- Add and delete expenses
+- Automatic total calculation
 - Global state using Context API
-- LocalStorage persistence
+- Persistent data using localStorage
+- Clean and beginner-friendly architecture
 
 ## Tech Stack
 - React (Vite)
-- JavaScript
+- JavaScript (ES6+)
 - CSS
+- Browser localStorage
+
+## Project Structure
+- `components/` – UI components
+- `context/` – Global state management
+- `helpers/` – Pure business logic functions
 
 ## Setup
+```bash
 npm install
 npm run dev
-Purpose
-This project is built for learning core React concepts without external libraries or backend dependencies.
+
 
 ---
 
-# 🧠 WHY THIS PROJECT IS EXCELLENT (REAL TALK)
+# 🏁 FINAL COMMIT (IMPORTANT)
 
-✔ Teaches **state flow**  
-✔ Forces **thinking, not copying**  
-✔ Clean enough for resume  
-✔ No distractions  
-✔ Scales later to DRF + API  
-
-Recruiters care more about **clarity** than complexity at your level.
-
----
-
-# 🧪 GIT SETUP (DO THIS NOW)
-
-git init
+```bash
 git add .
-git commit -m "Initial project setup with Vite"
+git commit -m "Finalize project: context-based expense tracker"
