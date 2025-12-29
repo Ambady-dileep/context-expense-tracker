@@ -1,10 +1,17 @@
-import { createContext, useState } from "react"
+import { createContext, useState, useEffect } from "react"
 import { addExpense, removeExpense } from "../helpers/expenseHelpers"
 
 export const ExpenseContext = createContext()
 
 function ExpenseProvider({ children }) {
-  const [expenses, setExpenses] = useState([])
+  const [expenses, setExpenses] = useState(() => {
+    const stored = localStorage.getItem("expenses")
+    return stored ? JSON.parse(stored) : []
+  })
+
+  useEffect(() => {
+    localStorage.setItem("expenses", JSON.stringify(expenses))
+  }, [expenses])
 
   function handleAddExpense(expense) {
     setExpenses((prev) => addExpense(prev, expense))
