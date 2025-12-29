@@ -1,9 +1,9 @@
-function ExpenseItem({title, amount}){
+function ExpenseItem({title, amount, onDelete }){
     return (
         <li>
             <span>{title}</span>
             <span>₹{amount}</span>
-            <button>Delete</button>
+            <button onClick={onDelete}>Delete</button>
         </li>
     )
 }
