@@ -2,33 +2,28 @@ import { useState } from "react"
 import ExpenseForm from "./components/ExpenseForm"
 import ExpenseList from "./components/ExpenseList"
 import TotalAmount from "./components/TotalAmount"
+import { addExpense, removeExpense } from "./helpers/expenseHelpers"
 
 function App() {
-  const [expenses, setExpenses] = useState([
-    { id: 1, title: "Groceries", amount: 500 },
-    { id: 2, title: "Rent", amount: 8000 },
-  ])
+  const [expenses, setExpenses] = useState([])
 
-  function addExpense(expense) {
-    setExpenses((prevExpenses) => {
-      return [...prevExpenses, expense]
-    })
+  function handleAddExpense(expense) {
+    setExpenses((prev) => addExpense(prev,expense))
   }
 
-  function deleteExpense(){
-    setExpenses((prevExpenses)=>{
-      prevExpenses.filter((expense)=> expense.id !== id)
-    })
+  function handleDeleteExpense(id) {
+    setExpenses((prev) => removeExpense(prev, id))
   }
+
 
   return (
     <div>
       <h1>Expense Tracker</h1>
-      <ExpenseForm onAddExpense={addExpense} />
+      <ExpenseForm onAddExpense={handleAddExpense} />
       <TotalAmount expenses={expenses} />
       <ExpenseList 
       expenses={expenses}
-      onDeleteExpense={deleteExpense}
+      onDeleteExpense={handleDeleteExpense}
       />
     </div>
   )

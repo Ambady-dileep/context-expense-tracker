@@ -1,8 +1,8 @@
-function TotalAmount({ expenses }) {
-  const total = expenses.reduce((sum, expense) => {
-    return sum + expense.amount
-  }, 0)
+import { calculateTotal } from "../helpers/expenseHelpers"
 
+function TotalAmount({ expenses }) {
+  const total = calculateTotal(expenses)
+  
   return <h2>Total: ₹{total}</h2>
 }
 
